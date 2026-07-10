@@ -155,9 +155,159 @@
 
         /* ===== Back to top ===== */
         #back-to-top { transition: opacity 0.3s ease, transform 0.3s ease; }
+
+        /* ===== Custom cursor (progressive enhancement) ===== */
+        body.custom-cursor-active, body.custom-cursor-active a, body.custom-cursor-active button, body.custom-cursor-active input, body.custom-cursor-active textarea {
+            cursor: none;
+        }
+        #cursor-dot, #cursor-ring {
+            position: fixed;
+            top: 0; left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            border-radius: 9999px;
+            transform: translate(-50%, -50%);
+            will-change: transform;
+            opacity: 0;
+        }
+        body.custom-cursor-active #cursor-dot, body.custom-cursor-active #cursor-ring { opacity: 1; }
+        #cursor-dot {
+            width: 8px; height: 8px;
+            background: #4CAF50;
+            transition: opacity 0.2s ease, background 0.25s ease;
+        }
+        #cursor-ring {
+            width: 34px; height: 34px;
+            border: 1.5px solid rgba(76,175,80,0.55);
+            transition: width 0.25s cubic-bezier(.16,1,.3,1), height 0.25s cubic-bezier(.16,1,.3,1), border-color 0.25s ease, opacity 0.2s ease, background 0.25s ease;
+        }
+        #cursor-ring.cursor-hover {
+            width: 58px; height: 58px;
+            background: rgba(76,175,80,0.12);
+            border-color: rgba(76,175,80,0.9);
+        }
+
+        /* ===== Préchargeur ===== */
+        #preloader {
+            position: fixed; inset: 0; z-index: 200;
+            background: #0A3D2E;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+            transition: opacity 0.7s ease, visibility 0.7s ease;
+        }
+        #preloader.loaded { opacity: 0; visibility: hidden; pointer-events: none; }
+        #preloader-logo {
+            width: 56px; height: 56px;
+            border: 3px solid rgba(76,175,80,0.25);
+            border-top-color: #4CAF50;
+            border-radius: 9999px;
+            animation: preloaderSpin 0.85s linear infinite;
+        }
+        @keyframes preloaderSpin { to { transform: rotate(360deg); } }
+        #preloader-pct { font-variant-numeric: tabular-nums; letter-spacing: 0.25em; }
+
+        /* ===== Grain / texture premium ===== */
+        #grain-overlay {
+            position: fixed; inset: 0; z-index: 60;
+            pointer-events: none;
+            opacity: 0.035;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+        }
+
+        /* ===== Reveal system v2 : flou + échelle + translation ===== */
+        .reveal-group > *, .reveal-single {
+            opacity: 0;
+            transform: translateY(36px) scale(0.97);
+            filter: blur(6px);
+            transition: opacity 0.9s cubic-bezier(.16,1,.3,1), transform 0.9s cubic-bezier(.16,1,.3,1), filter 0.9s cubic-bezier(.16,1,.3,1);
+        }
+        .reveal-group > *.is-visible, .reveal-single.is-visible {
+            opacity: 1;
+            transform: none;
+            filter: blur(0);
+        }
+
+        /* ===== Cartes à halo animé ===== */
+        @property --a { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+        .glow-card { position: relative; isolation: isolate; }
+        .glow-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            padding: 2px;
+            background: conic-gradient(from var(--a), transparent, #4CAF50, transparent 35%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            animation: spin-border 2.6s linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .glow-card:hover::before { opacity: 1; }
+        @keyframes spin-border { to { --a: 360deg; } }
+
+        /* ===== Halo compteurs ===== */
+        .stat-number { text-shadow: 0 0 24px rgba(76,175,80,0.55); }
+
+        /* ===== Dots & flèches des mini-carrousels ===== */
+        .mc-dots { position: absolute; bottom: 14px; right: 14px; display: flex; gap: 6px; z-index: 20; }
+        .mc-dot { width: 6px; height: 6px; border-radius: 9999px; background: rgba(255,255,255,0.4); transition: all 0.3s ease; border: none; padding: 0; }
+        .mc-dot.active { background: #4CAF50; width: 20px; }
+        .mc-arrow {
+            position: absolute; top: 50%; margin-top: -19px;
+            width: 38px; height: 38px; border-radius: 9999px;
+            background: rgba(255,255,255,0.08); backdrop-filter: blur(6px);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: white; display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s ease, background 0.3s ease;
+            z-index: 20;
+        }
+        .mc-root:hover .mc-arrow { opacity: 1; }
+        .mc-arrow:hover { background: rgba(76,175,80,0.5); }
+        .mc-arrow.mc-prev { left: 14px; }
+        .mc-arrow.mc-next { right: 14px; }
+
+        /* ===== Indicateur de nav coulissant ===== */
+        #nav-indicator {
+            position: absolute;
+            bottom: 2px; left: 0;
+            height: 2px;
+            background: #4CAF50;
+            border-radius: 9999px;
+            transition: transform 0.4s cubic-bezier(.16,1,.3,1), width 0.4s cubic-bezier(.16,1,.3,1), opacity 0.3s ease;
+            opacity: 0;
+            width: 0;
+        }
+
+        /* ===== Effet ripple ===== */
+        .ripple-span {
+            position: absolute;
+            border-radius: 9999px;
+            background: rgba(255,255,255,0.5);
+            transform: scale(0);
+            animation: ripple-anim 0.6s ease-out forwards;
+            pointer-events: none;
+        }
+        @keyframes ripple-anim { to { transform: scale(2.5); opacity: 0; } }
     </style>
 </head>
 <body class="font-sans text-gray-700 antialiased flex flex-col min-h-screen bg-gray-50 selection:bg-ufhb-light selection:text-white">
+
+    <!-- Préchargeur -->
+    <div id="preloader">
+        <div id="preloader-logo"></div>
+        <span id="preloader-pct" class="text-white/70 text-xs font-bold uppercase">0%</span>
+    </div>
+
+    <!-- Curseur custom -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+
+    <!-- Grain / texture premium -->
+    <div id="grain-overlay"></div>
 
     <!-- Barre de progression de scroll -->
     <div class="fixed top-0 left-0 w-full h-1 z-[70] bg-black/5">
@@ -175,13 +325,14 @@
                     <h1 class="text-lg font-extrabold text-ufhb-dark tracking-tight">Université Félix<br>Houphouët-Boigny</h1>
                 </div>
             </div>
-            <nav class="hidden md:flex space-x-8 text-sm font-bold uppercase tracking-wide text-gray-600 items-center">
-                <a href="#" class="nav-link hover:text-ufhb-dark transition" data-nav="accueil">Accueil</a>
+            <nav class="hidden md:flex space-x-8 text-sm font-bold uppercase tracking-wide text-gray-600 items-center relative">
+                <span id="nav-indicator"></span>
+                <a href="#accueil" class="nav-link hover:text-ufhb-dark transition" data-nav="accueil">Accueil</a>
                 <a href="#projet" class="nav-link hover:text-ufhb-dark transition" data-nav="projet">Le Projet</a>
                 <a href="#temps-forts" class="nav-link hover:text-ufhb-dark transition" data-nav="temps-forts">Temps Forts</a>
                 <a href="#temoignages" class="nav-link hover:text-ufhb-dark transition" data-nav="temoignages">Témoignages</a>
                 <a href="#partenaires" class="nav-link hover:text-ufhb-dark transition" data-nav="partenaires">Partenaires</a>
-                <a href="#contact" class="px-6 py-2.5 bg-ufhb-dark text-white rounded-full hover:bg-ufhb-light hover:shadow-lg hover:-translate-y-0.5 transition duration-300 transform">
+                <a href="#contact" class="ripple-target relative overflow-hidden px-6 py-2.5 bg-ufhb-dark text-white rounded-full hover:bg-ufhb-light hover:shadow-lg hover:-translate-y-0.5 transition duration-300 transform">
                     Contact
                 </a>
             </nav>
@@ -191,11 +342,12 @@
         </div>
     </header>
 
-    <section class="relative h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section id="accueil" class="relative h-screen flex items-center justify-center overflow-hidden pt-20">
         <div class="absolute inset-0 z-0">
             <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/banniere-ufhb.jpg" class="w-full h-full object-cover scale-105" alt="Bannière">
             <div class="absolute inset-0 bg-gradient-to-b from-ufhb-dark/90 via-ufhb-dark/60 to-ufhb-dark/90"></div>
             <div class="hero-grid-overlay absolute inset-0"></div>
+            <canvas id="hero-particles" class="absolute inset-0 pointer-events-none z-[4]"></canvas>
             <div id="hero-spotlight" class="absolute inset-0 pointer-events-none z-[5]"></div>
         </div>
 
@@ -214,7 +366,7 @@
             </p>
 
             <div id="hero-ctas" class="hero-animate flex flex-col md:flex-row justify-center items-center gap-6">
-                <a href="#projet" id="magnetic-btn" class="group bg-ufhb-light text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white hover:text-ufhb-dark transition-colors duration-300 shadow-[0_0_20px_rgba(76,175,80,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] inline-block">
+                <a href="#projet" id="magnetic-btn" class="ripple-target relative overflow-hidden group bg-ufhb-light text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white hover:text-ufhb-dark transition-colors duration-300 shadow-[0_0_20px_rgba(76,175,80,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] inline-block">
                     Découvrir le programme
                     <i class="fas fa-arrow-down ml-2 group-hover:translate-y-1 transition-transform"></i>
                 </a>
@@ -267,21 +419,21 @@
             </div>
 
             <div class="reveal-group grid md:grid-cols-3 gap-10 mb-8">
-                <div class="tilt-card p-8 rounded-3xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-2xl transition-[background-color,border-color,box-shadow] duration-500 text-center group cursor-default">
+                <div class="tilt-card glow-card p-8 rounded-3xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-2xl transition-[background-color,border-color,box-shadow] duration-500 text-center group cursor-default">
                     <div class="w-20 h-20 mx-auto bg-ufhb-accent rounded-full flex items-center justify-center text-ufhb-dark text-4xl mb-6 group-hover:scale-110 group-hover:bg-ufhb-dark group-hover:text-white transition duration-500">
                         <i class="fas fa-bullseye"></i>
                     </div>
                     <h4 class="text-xl font-bold text-ufhb-dark mb-3">Leadership Féminin</h4>
                     <p class="text-gray-600 leading-relaxed">Renforcer la place des femmes dans la gouvernance universitaire et la recherche.</p>
                 </div>
-                <div class="tilt-card p-8 rounded-3xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-2xl transition-[background-color,border-color,box-shadow] duration-500 text-center group cursor-default">
+                <div class="tilt-card glow-card p-8 rounded-3xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-2xl transition-[background-color,border-color,box-shadow] duration-500 text-center group cursor-default">
                     <div class="w-20 h-20 mx-auto bg-ufhb-accent rounded-full flex items-center justify-center text-ufhb-dark text-4xl mb-6 group-hover:scale-110 group-hover:bg-ufhb-dark group-hover:text-white transition duration-500">
                         <i class="fas fa-network-wired"></i>
                     </div>
                     <h4 class="text-xl font-bold text-ufhb-dark mb-3">Réseautage</h4>
                     <p class="text-gray-600 leading-relaxed">Créer un pont durable entre les scientifiques d'Europe et d'Afrique.</p>
                 </div>
-                <div class="tilt-card p-8 rounded-3xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-2xl transition-[background-color,border-color,box-shadow] duration-500 text-center group cursor-default">
+                <div class="tilt-card glow-card p-8 rounded-3xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-2xl transition-[background-color,border-color,box-shadow] duration-500 text-center group cursor-default">
                     <div class="w-20 h-20 mx-auto bg-ufhb-accent rounded-full flex items-center justify-center text-ufhb-dark text-4xl mb-6 group-hover:scale-110 group-hover:bg-ufhb-dark group-hover:text-white transition duration-500">
                         <i class="fas fa-laptop-code"></i>
                     </div>
@@ -611,7 +763,7 @@
                             <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Message</label>
                             <textarea rows="4" name="message" class="w-full bg-gray-50 p-3 rounded-lg border border-gray-200 focus:border-ufhb-light focus:ring-2 focus:ring-ufhb-light/20 outline-none transition"></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-ufhb-dark hover:bg-ufhb-light text-white font-bold py-4 rounded-xl transition duration-300 transform hover:-translate-y-1 shadow-lg">
+                        <button type="submit" class="ripple-target relative overflow-hidden w-full bg-ufhb-dark hover:bg-ufhb-light text-white font-bold py-4 rounded-xl transition duration-300 transform hover:-translate-y-1 shadow-lg">
                             Envoyer le message <i class="fas fa-paper-plane ml-2"></i>
                         </button>
                     </form>
@@ -628,8 +780,12 @@
         </div>
     </footer>
 
-    <button id="back-to-top" class="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-ufhb-dark text-white shadow-xl flex items-center justify-center opacity-0 pointer-events-none translate-y-4 hover:bg-ufhb-light hover:-translate-y-1">
-        <i class="fas fa-arrow-up"></i>
+    <button id="back-to-top" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-ufhb-dark text-white shadow-xl flex items-center justify-center opacity-0 pointer-events-none translate-y-4 hover:bg-ufhb-light transition-colors duration-300">
+        <svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 56 56">
+            <circle cx="28" cy="28" r="25" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"></circle>
+            <circle id="back-to-top-ring" cx="28" cy="28" r="25" fill="none" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-dasharray="157.08" stroke-dashoffset="157.08"></circle>
+        </svg>
+        <i class="fas fa-arrow-up relative z-10"></i>
     </button>
 
     <script>
@@ -653,13 +809,37 @@
             });
         }
 
+        /* ===================== Préchargeur ===================== */
+        const preloader = document.getElementById('preloader');
+        const preloaderPct = document.getElementById('preloader-pct');
+        let loadPct = 0;
+        const preloaderTimer = setInterval(() => {
+            loadPct += Math.random() * 18 + 6;
+            if (loadPct >= 100) {
+                loadPct = 100;
+                clearInterval(preloaderTimer);
+                if (preloaderPct) preloaderPct.textContent = '100%';
+                setTimeout(() => {
+                    if (preloader) preloader.classList.add('loaded');
+                    playHeroEntrance();
+                }, 250);
+            } else if (preloaderPct) {
+                preloaderPct.textContent = Math.floor(loadPct) + '%';
+            }
+        }, 140);
+
         /* ===================== Barre de progression de scroll ===================== */
         const progressFill = document.getElementById('scroll-progress-fill');
+        const backToTopRing = document.getElementById('back-to-top-ring');
+        const RING_CIRCUMFERENCE = 157.08;
         function updateScrollProgress() {
             const scrollTop = window.scrollY;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
             const pct = docHeight > 0 ? scrollTop / docHeight : 0;
             progressFill.style.transform = `scaleX(${pct})`;
+            if (backToTopRing) {
+                backToTopRing.style.strokeDashoffset = String(RING_CIRCUMFERENCE - RING_CIRCUMFERENCE * pct);
+            }
         }
         window.addEventListener('scroll', updateScrollProgress, { passive: true });
         updateScrollProgress();
@@ -691,16 +871,146 @@
         }
 
         /* ===================== Hero : timeline d'entrée (anime.js) ===================== */
-        if (window.anime) {
-            anime.timeline({ easing: 'easeOutExpo' })
-                .add({ targets: '#hero-badge', opacity: [0, 1], translateY: [30, 0], duration: 700 })
-                .add({ targets: '#hero-line1', opacity: [0, 1], translateY: [40, 0], duration: 800 }, '-=400')
-                .add({ targets: '#hero-line2', opacity: [0, 1], translateY: [40, 0], duration: 800 }, '-=550')
-                .add({ targets: '#hero-paragraph', opacity: [0, 1], translateY: [30, 0], duration: 700 }, '-=400')
-                .add({ targets: '#hero-ctas', opacity: [0, 1], translateY: [30, 0], duration: 700 }, '-=400');
-        } else {
-            document.querySelectorAll('.hero-animate').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+        function playHeroEntrance() {
+            if (window.anime) {
+                anime.timeline({ easing: 'easeOutExpo' })
+                    .add({ targets: '#hero-badge', opacity: [0, 1], translateY: [30, 0], duration: 700 })
+                    .add({ targets: '#hero-line1', opacity: [0, 1], translateY: [40, 0], duration: 800 }, '-=400')
+                    .add({ targets: '#hero-line2', opacity: [0, 1], translateY: [40, 0], duration: 800 }, '-=550')
+                    .add({ targets: '#hero-paragraph', opacity: [0, 1], translateY: [30, 0], duration: 700 }, '-=400')
+                    .add({ targets: '#hero-ctas', opacity: [0, 1], translateY: [30, 0], duration: 700 }, '-=400');
+            } else {
+                document.querySelectorAll('.hero-animate').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+            }
         }
+        // Filet de sécurité : si le préchargeur ne s'est pas terminé correctement, on affiche quand même le hero après 3s
+        let heroEntranceStarted = false;
+        const _playHeroEntranceOriginal = playHeroEntrance;
+        playHeroEntrance = function () { heroEntranceStarted = true; _playHeroEntranceOriginal(); };
+        setTimeout(() => { if (!heroEntranceStarted) playHeroEntrance(); }, 3000);
+
+        /* ===================== Curseur custom (desktop uniquement) ===================== */
+        (function initCustomCursor() {
+            if (!window.matchMedia('(pointer: fine)').matches) return;
+            const dot = document.getElementById('cursor-dot');
+            const ring = document.getElementById('cursor-ring');
+            if (!dot || !ring) return;
+            document.body.classList.add('custom-cursor-active');
+            let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+            let ringX = mouseX, ringY = mouseY;
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX; mouseY = e.clientY;
+                dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+            });
+            function animateRing() {
+                ringX += (mouseX - ringX) * 0.18;
+                ringY += (mouseY - ringY) * 0.18;
+                ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+                requestAnimationFrame(animateRing);
+            }
+            animateRing();
+            const hoverTargets = 'a, button, .mc-root, .tilt-card, input, textarea';
+            document.addEventListener('mouseover', (e) => {
+                if (e.target.closest && e.target.closest(hoverTargets)) ring.classList.add('cursor-hover');
+            });
+            document.addEventListener('mouseout', (e) => {
+                if (e.target.closest && e.target.closest(hoverTargets)) ring.classList.remove('cursor-hover');
+            });
+            document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
+            document.addEventListener('mouseenter', () => { dot.style.opacity = '1'; ring.style.opacity = '1'; });
+        })();
+
+        /* ===================== Particules canvas (hero, réseau technologique) ===================== */
+        (function initHeroParticles() {
+            const canvas = document.getElementById('hero-particles');
+            if (!canvas) return;
+            const heroSection = canvas.closest('section');
+            const ctx = canvas.getContext('2d');
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reduceMotion) return;
+            let particles = [];
+            let rafId = null;
+            let running = false;
+            const isSmall = window.innerWidth < 768;
+            const COUNT = isSmall ? 32 : 65;
+            const LINK_DIST = isSmall ? 90 : 130;
+
+            function resize() {
+                canvas.width = heroSection.offsetWidth;
+                canvas.height = heroSection.offsetHeight;
+            }
+            function makeParticles() {
+                particles = Array.from({ length: COUNT }, () => ({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.35,
+                    vy: (Math.random() - 0.5) * 0.35,
+                    r: Math.random() * 1.6 + 0.8
+                }));
+            }
+            function step() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (const p of particles) {
+                    p.x += p.vx; p.y += p.vy;
+                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                }
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const a = particles[i], b = particles[j];
+                        const dx = a.x - b.x, dy = a.y - b.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < LINK_DIST) {
+                            ctx.strokeStyle = `rgba(76,175,80,${0.22 * (1 - dist / LINK_DIST)})`;
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(a.x, a.y);
+                            ctx.lineTo(b.x, b.y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+                ctx.fillStyle = 'rgba(180,255,190,0.55)';
+                for (const p of particles) {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                if (running) rafId = requestAnimationFrame(step);
+            }
+            function start() {
+                if (running) return;
+                running = true;
+                rafId = requestAnimationFrame(step);
+            }
+            function stop() {
+                running = false;
+                if (rafId) cancelAnimationFrame(rafId);
+            }
+            resize();
+            makeParticles();
+            window.addEventListener('resize', () => { resize(); makeParticles(); });
+            const heroObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { entry.isIntersecting ? start() : stop(); });
+            }, { threshold: 0 });
+            heroObserver.observe(heroSection);
+        })();
+
+        /* ===================== Effet ripple (boutons) ===================== */
+        function addRipple(e, el) {
+            const rect = el.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const span = document.createElement('span');
+            span.className = 'ripple-span';
+            span.style.width = span.style.height = size + 'px';
+            span.style.left = (e.clientX - rect.left - size / 2) + 'px';
+            span.style.top = (e.clientY - rect.top - size / 2) + 'px';
+            el.appendChild(span);
+            setTimeout(() => span.remove(), 650);
+        }
+        document.querySelectorAll('.ripple-target').forEach(el => {
+            el.addEventListener('click', (e) => addRipple(e, el));
+        });
 
         /* ===================== Bouton magnétique (CTA principal) ===================== */
         const magneticBtn = document.getElementById('magnetic-btn');
@@ -741,30 +1051,17 @@
             });
         });
 
-        /* ===================== Reveal au scroll (anime.js + IntersectionObserver) ===================== */
+        /* ===================== Reveal au scroll v2 (flou + échelle, class-based) ===================== */
         const io = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) return;
                 const el = entry.target;
                 if (el.classList.contains('reveal-group')) {
-                    if (window.anime) {
-                        anime({
-                            targets: el.children,
-                            translateY: [40, 0],
-                            opacity: [0, 1],
-                            delay: anime.stagger(120),
-                            duration: 900,
-                            easing: 'easeOutExpo'
-                        });
-                    } else {
-                        Array.from(el.children).forEach(c => { c.style.opacity = 1; });
-                    }
+                    Array.from(el.children).forEach((c, i) => {
+                        setTimeout(() => c.classList.add('is-visible'), i * 100);
+                    });
                 } else {
-                    if (window.anime) {
-                        anime({ targets: el, translateY: [40, 0], opacity: [0, 1], duration: 900, easing: 'easeOutExpo' });
-                    } else {
-                        el.style.opacity = 1;
-                    }
+                    el.classList.add('is-visible');
                 }
                 io.unobserve(el);
             });
@@ -803,8 +1100,45 @@
                 const parentBlock = root.closest('div.reveal-single') || root.parentElement;
                 const captionEl = parentBlock ? parentBlock.querySelector('.mc-caption') : null;
 
+                // Flèches précédent / suivant
+                const prevBtn = document.createElement('button');
+                prevBtn.className = 'mc-arrow mc-prev';
+                prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                prevBtn.setAttribute('aria-label', 'Photo précédente');
+                prevBtn.type = 'button';
+                const nextBtn = document.createElement('button');
+                nextBtn.className = 'mc-arrow mc-next';
+                nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                nextBtn.setAttribute('aria-label', 'Photo suivante');
+                nextBtn.type = 'button';
+                root.appendChild(prevBtn);
+                root.appendChild(nextBtn);
+
+                // Dots de navigation (uniquement si peu de photos)
+                let dotsWrap = null;
+                if (total <= 8) {
+                    dotsWrap = document.createElement('div');
+                    dotsWrap.className = 'mc-dots';
+                    for (let i = 0; i < total; i++) {
+                        const d = document.createElement('button');
+                        d.className = 'mc-dot' + (i === 0 ? ' active' : '');
+                        d.type = 'button';
+                        d.setAttribute('aria-label', 'Aller à la photo ' + (i + 1));
+                        d.addEventListener('click', () => {
+                            clearInterval(timer);
+                            show(i);
+                            timer = setInterval(() => show(idx + 1), DURATION);
+                        });
+                        dotsWrap.appendChild(d);
+                    }
+                    root.appendChild(dotsWrap);
+                }
+
                 function updateCounter() {
                     if (counter) counter.textContent = String(idx + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+                    if (dotsWrap) {
+                        dotsWrap.querySelectorAll('.mc-dot').forEach((d, di) => d.classList.toggle('active', di === idx));
+                    }
                 }
                 function restartProgress() {
                     if (!progress) return;
@@ -834,6 +1168,16 @@
                 restartProgress();
 
                 let timer = setInterval(() => show(idx + 1), DURATION);
+                prevBtn.addEventListener('click', () => {
+                    clearInterval(timer);
+                    show(idx - 1);
+                    timer = setInterval(() => show(idx + 1), DURATION);
+                });
+                nextBtn.addEventListener('click', () => {
+                    clearInterval(timer);
+                    show(idx + 1);
+                    timer = setInterval(() => show(idx + 1), DURATION);
+                });
                 root.addEventListener('mouseenter', () => {
                     clearInterval(timer);
                     if (progress) {
@@ -850,20 +1194,43 @@
         }
         initMiniCarousels();
 
-        /* ===================== Scroll-spy navigation ===================== */
+        /* ===================== Scroll-spy navigation + indicateur coulissant ===================== */
         const navLinks = document.querySelectorAll('.nav-link[data-nav]');
-        const navSections = ['projet', 'temps-forts', 'temoignages', 'partenaires']
+        const navIndicator = document.getElementById('nav-indicator');
+        let currentActiveLink = null;
+        function moveNavIndicator(link) {
+            if (!navIndicator || !link) return;
+            const navEl = link.closest('nav');
+            if (!navEl) return;
+            const linkRect = link.getBoundingClientRect();
+            const navRect = navEl.getBoundingClientRect();
+            navIndicator.style.width = linkRect.width + 'px';
+            navIndicator.style.transform = `translateX(${linkRect.left - navRect.left}px)`;
+            navIndicator.style.opacity = '1';
+        }
+        function setActiveLink(id) {
+            const link = Array.from(navLinks).find(l => l.dataset.nav === id);
+            if (!link) return;
+            navLinks.forEach(l => l.classList.toggle('nav-active', l === link));
+            currentActiveLink = link;
+            moveNavIndicator(link);
+        }
+        navLinks.forEach(link => {
+            link.addEventListener('mouseenter', () => moveNavIndicator(link));
+            link.addEventListener('mouseleave', () => moveNavIndicator(currentActiveLink));
+        });
+        window.addEventListener('resize', () => moveNavIndicator(currentActiveLink));
+
+        const navSections = ['accueil', 'projet', 'temps-forts', 'temoignages', 'partenaires']
             .map(id => document.getElementById(id))
             .filter(Boolean);
         const navObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.id;
-                    navLinks.forEach(link => link.classList.toggle('nav-active', link.dataset.nav === id));
-                }
+                if (entry.isIntersecting) setActiveLink(entry.target.id);
             });
         }, { rootMargin: '-40% 0px -55% 0px' });
         navSections.forEach(sec => navObserver.observe(sec));
+        setTimeout(() => setActiveLink('accueil'), 300);
     </script>
 </body>
 </html>

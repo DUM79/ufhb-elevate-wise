@@ -8,25 +8,26 @@
     <meta name="description" content="Site officiel du projet Erasmus+ ELEVATE WISE à l'Université Félix Houphouët-Boigny. Promotion du leadership féminin et des jeunes filles dans les sciences (STEM) en Côte d'Ivoire.">
     <meta name="keywords" content="ELEVATE WISE, Erasmus+, UFHB, Côte d'Ivoire, Abidjan, Femmes Sciences, STEM, Bourses, Université Burgos, Autonomisation">
     <meta name="author" content="Consortium ELEVATE WISE">
-    <meta property="og:image" content="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/banniere-ufhb.jpg">
+    <meta property="og:image" content="https://ufhb-elevate-wise.vercel.app/images/stem.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" href="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/logo-ufhb.jpg" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/logo-elevate-wise.png" type="image/png">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
+                        sans: ['Lexend', 'sans-serif'],
                     },
                     colors: {
                         ufhb: {
-                            dark: '#0A3D2E',  /* Vert Institutionnel */
-                            light: '#4CAF50', /* Vert Vif */
-                            accent: '#E8F5E9', /* Fond clair */
+                            dark: '#3A2D6C',   /* Bleu nuit officiel ELEVATE WISE */
+                            light: '#F2901E',  /* Orange officiel ELEVATE WISE */
+                            teal: '#08757A',   /* Sarcelle officielle ELEVATE WISE */
+                            accent: '#FDF0DD', /* Fond clair chaud */
                         }
                     },
                     animation: {
@@ -51,11 +52,11 @@
             height: 2px;
             bottom: -4px;
             left: 0;
-            background-color: #4CAF50;
+            background-color: #F2901E;
             transition: width 0.3s ease;
         }
         .nav-link:hover::after { width: 100%; }
-        .nav-link.nav-active { color: #0A3D2E; }
+        .nav-link.nav-active { color: #3A2D6C; }
         .nav-link.nav-active::after { width: 100%; }
 
         /* ===== Reveal system (anime.js + IntersectionObserver) ===== */
@@ -70,8 +71,8 @@
         /* ===== Hero tech grid + spotlight ===== */
         .hero-grid-overlay {
             background-image:
-                linear-gradient(rgba(76,175,80,0.12) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(76,175,80,0.12) 1px, transparent 1px);
+                linear-gradient(rgba(242,144,30,0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(242,144,30,0.12) 1px, transparent 1px);
             background-size: 42px 42px;
             animation: gridPan 30s linear infinite;
         }
@@ -80,7 +81,7 @@
             100% { background-position: 42px 42px; }
         }
         #hero-spotlight {
-            background: radial-gradient(circle 380px at var(--x, 50%) var(--y, 50%), rgba(76,175,80,0.35), transparent 70%);
+            background: radial-gradient(circle 380px at var(--x, 50%) var(--y, 50%), rgba(242,144,30,0.35), transparent 70%);
             opacity: 0;
             transition: opacity 0.4s ease;
         }
@@ -105,10 +106,10 @@
 
         /* ===== Timeline ===== */
         .timeline-line {
-            background: linear-gradient(to bottom, transparent, #4CAF50 8%, #4CAF50 92%, transparent);
+            background: linear-gradient(to bottom, transparent, #F2901E 8%, #F2901E 92%, transparent);
         }
         .timeline-dot {
-            box-shadow: 0 0 0 6px rgba(76,175,80,0.18), 0 0 20px rgba(76,175,80,0.5);
+            box-shadow: 0 0 0 6px rgba(242,144,30,0.18), 0 0 20px rgba(242,144,30,0.5);
         }
 
         /* ===== Décor : mesh blobs ===== */
@@ -173,32 +174,32 @@
         body.custom-cursor-active #cursor-dot, body.custom-cursor-active #cursor-ring { opacity: 1; }
         #cursor-dot {
             width: 8px; height: 8px;
-            background: #4CAF50;
+            background: #F2901E;
             transition: opacity 0.2s ease, background 0.25s ease;
         }
         #cursor-ring {
             width: 34px; height: 34px;
-            border: 1.5px solid rgba(76,175,80,0.55);
+            border: 1.5px solid rgba(242,144,30,0.55);
             transition: width 0.25s cubic-bezier(.16,1,.3,1), height 0.25s cubic-bezier(.16,1,.3,1), border-color 0.25s ease, opacity 0.2s ease, background 0.25s ease;
         }
         #cursor-ring.cursor-hover {
             width: 58px; height: 58px;
-            background: rgba(76,175,80,0.12);
-            border-color: rgba(76,175,80,0.9);
+            background: rgba(242,144,30,0.12);
+            border-color: rgba(242,144,30,0.9);
         }
 
         /* ===== Préchargeur ===== */
         #preloader {
             position: fixed; inset: 0; z-index: 200;
-            background: #0A3D2E;
+            background: #3A2D6C;
             display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
             transition: opacity 0.7s ease, visibility 0.7s ease;
         }
         #preloader.loaded { opacity: 0; visibility: hidden; pointer-events: none; }
         #preloader-logo {
             width: 56px; height: 56px;
-            border: 3px solid rgba(76,175,80,0.25);
-            border-top-color: #4CAF50;
+            border: 3px solid rgba(242,144,30,0.25);
+            border-top-color: #F2901E;
             border-radius: 9999px;
             animation: preloaderSpin 0.85s linear infinite;
         }
@@ -246,7 +247,7 @@
             inset: -2px;
             border-radius: inherit;
             padding: 2px;
-            background: conic-gradient(from var(--a), transparent, #4CAF50, transparent 35%);
+            background: conic-gradient(from var(--a), transparent, #F2901E, transparent 35%);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
@@ -260,12 +261,12 @@
         @keyframes spin-border { to { --a: 360deg; } }
 
         /* ===== Halo compteurs ===== */
-        .stat-number { text-shadow: 0 0 24px rgba(76,175,80,0.55); }
+        .stat-number { text-shadow: 0 0 24px rgba(242,144,30,0.55); }
 
         /* ===== Dots & flèches des mini-carrousels ===== */
         .mc-dots { position: absolute; bottom: 14px; right: 14px; display: flex; gap: 6px; z-index: 20; }
         .mc-dot { width: 6px; height: 6px; border-radius: 9999px; background: rgba(255,255,255,0.4); transition: all 0.3s ease; border: none; padding: 0; }
-        .mc-dot.active { background: #4CAF50; width: 20px; }
+        .mc-dot.active { background: #F2901E; width: 20px; }
         .mc-arrow {
             position: absolute; top: 50%; margin-top: -19px;
             width: 38px; height: 38px; border-radius: 9999px;
@@ -276,7 +277,7 @@
             z-index: 20;
         }
         .mc-root:hover .mc-arrow { opacity: 1; }
-        .mc-arrow:hover { background: rgba(76,175,80,0.5); }
+        .mc-arrow:hover { background: rgba(242,144,30,0.5); }
         .mc-arrow.mc-prev { left: 14px; }
         .mc-arrow.mc-next { right: 14px; }
 
@@ -285,7 +286,7 @@
             position: absolute;
             bottom: 2px; left: 0;
             height: 2px;
-            background: #4CAF50;
+            background: #F2901E;
             border-radius: 9999px;
             transition: transform 0.4s cubic-bezier(.16,1,.3,1), width 0.4s cubic-bezier(.16,1,.3,1), opacity 0.3s ease;
             opacity: 0;
@@ -304,7 +305,7 @@
         @keyframes ripple-anim { to { transform: scale(2.5); opacity: 0; } }
     </style>
 </head>
-<body class="font-sans text-gray-700 antialiased flex flex-col min-h-screen bg-gray-50 selection:bg-ufhb-light selection:text-white">
+<body class="font-sans text-ufhb-dark/85 antialiased flex flex-col min-h-screen bg-ufhb-accent/40 selection:bg-ufhb-light selection:text-white">
 
     <!-- Préchargeur -->
     <div id="preloader">
@@ -324,21 +325,22 @@
 
     <!-- Barre de progression de scroll -->
     <div class="fixed top-0 left-0 w-full h-1 z-[70] bg-black/5">
-        <div id="scroll-progress-fill" class="h-full bg-gradient-to-r from-ufhb-light to-emerald-400 origin-left"></div>
+        <div id="scroll-progress-fill" class="h-full bg-gradient-to-r from-ufhb-light to-ufhb-teal origin-left"></div>
     </div>
 
     <header class="glass-nav fixed top-0 w-full z-50 transition-all duration-300">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3 group cursor-pointer">
                 <div class="relative">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-ufhb-light to-blue-500 rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-                    <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/logo-ufhb.jpg" alt="Logo UFHB" class="relative h-14 w-auto object-contain bg-white rounded-full p-1">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-ufhb-light to-ufhb-teal rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                    <img src="images/logo-ufhb.jpg" alt="Logo Université Félix Houphouët-Boigny" class="relative h-14 w-auto object-contain bg-white rounded-full p-1">
+
                 </div>
                 <div class="hidden md:block leading-tight">
                     <h1 class="text-lg font-extrabold text-ufhb-dark tracking-tight">Université Félix<br>Houphouët-Boigny</h1>
                 </div>
             </div>
-            <nav class="hidden md:flex space-x-8 text-sm font-bold uppercase tracking-wide text-gray-600 items-center relative">
+            <nav class="hidden md:flex space-x-8 text-sm font-bold uppercase tracking-wide text-ufhb-dark/75 items-center relative">
                 <span id="nav-indicator"></span>
                 <a href="#accueil" class="nav-link hover:text-ufhb-dark transition" data-nav="accueil">Accueil</a>
                 <a href="#projet" class="nav-link hover:text-ufhb-dark transition" data-nav="projet">Le Projet</a>
@@ -355,42 +357,49 @@
         </div>
     </header>
 
-    <section id="accueil" class="relative h-screen flex items-center justify-center overflow-hidden pt-20">
-        <div class="absolute inset-0 z-0">
-            <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/banniere-ufhb.jpg" class="w-full h-full object-cover scale-105" alt="Bannière">
-            <div class="absolute inset-0 bg-gradient-to-b from-ufhb-dark/90 via-ufhb-dark/60 to-ufhb-dark/90"></div>
-            <div class="hero-grid-overlay absolute inset-0"></div>
+    <section id="accueil" class="relative min-h-screen flex items-center overflow-hidden pt-24 pb-12" style="background: linear-gradient(135deg, #FFFFFF 0%, #FDF0DD 55%, #FBE0B8 100%);">
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <img src="images/banniere-ufhb.jpg" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover opacity-25 grayscale">
+            <div class="mesh-blob w-96 h-96 bg-ufhb-light -top-24 -right-24" style="opacity:.25"></div>
+            <div class="mesh-blob w-80 h-80 bg-ufhb-teal -bottom-24 -left-24" style="opacity:.18"></div>
+            <div class="hero-grid-overlay absolute inset-0" style="opacity:.6"></div>
             <div id="hero-spotlight" class="absolute inset-0 pointer-events-none z-[5]"></div>
         </div>
 
-        <div class="relative z-10 text-center text-white px-4 max-w-5xl">
-            <div id="hero-badge" class="hero-animate mb-4 inline-block px-4 py-1 rounded-full border border-ufhb-light/50 bg-ufhb-light/10 backdrop-blur-sm text-ufhb-light text-sm font-bold uppercase tracking-widest">
-                Coopération Internationale
+        <div class="relative z-10 container mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+            <div class="text-center md:text-left">
+                <div id="hero-badge" class="hero-animate mb-4 inline-block px-4 py-1 rounded-full border border-ufhb-light/60 bg-ufhb-light/10 text-ufhb-light text-sm font-bold uppercase tracking-widest">
+                    Coopération Internationale
+                </div>
+
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight tracking-tight overflow-hidden">
+                    <span id="hero-line1" class="hero-animate block text-ufhb-dark">ERASMUS+</span>
+                    <span id="hero-line2" class="hero-animate block text-ufhb-teal">ELEVATE WISE</span>
+                </h1>
+
+                <p id="hero-paragraph" class="hero-animate text-lg md:text-2xl mb-10 font-light text-ufhb-dark/80 max-w-xl mx-auto md:mx-0 leading-relaxed">
+                    Un programme d'excellence dédié à l'autonomisation des <strong class="text-ufhb-light font-bold">jeunes filles ivoiriennes</strong> dans les Sciences et Technologies (STEM).
+                </p>
+
+                <div id="hero-ctas" class="hero-animate flex flex-col sm:flex-row justify-center md:justify-start items-center gap-6">
+                    <a href="#projet" id="magnetic-btn" class="ripple-target relative overflow-hidden group bg-ufhb-light text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-ufhb-dark hover:text-white transition-colors duration-300 shadow-[0_0_20px_rgba(242,144,30,0.4)] inline-block">
+                        Découvrir le programme
+                        <i class="fas fa-arrow-down ml-2 group-hover:translate-y-1 transition-transform"></i>
+                    </a>
+                    <a href="https://youtu.be/PaX879-Bexo?si=Lgz-UOX_eDx9jpMC" target="_blank" class="flex items-center gap-3 text-ufhb-dark hover:text-ufhb-teal transition duration-300 group">
+                        <span class="w-12 h-12 flex items-center justify-center rounded-full bg-ufhb-dark/10 border border-ufhb-dark/20 group-hover:scale-110 transition duration-300">
+                            <i class="fas fa-play ml-1"></i>
+                        </span>
+                        <span class="font-bold underline decoration-ufhb-light underline-offset-4">Voir la vidéo</span>
+                    </a>
+                </div>
             </div>
 
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight tracking-tight drop-shadow-2xl overflow-hidden">
-                <span id="hero-line1" class="hero-animate block">ERASMUS+</span>
-                <span id="hero-line2" class="hero-animate block text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">ELEVATE WISE</span>
-            </h1>
-
-            <p id="hero-paragraph" class="hero-animate text-lg md:text-2xl mb-10 font-light text-gray-200 max-w-3xl mx-auto leading-relaxed">
-                Un programme d'excellence dédié à l'autonomisation des <strong class="text-ufhb-light font-bold">jeunes filles ivoiriennes</strong> dans les Sciences et Technologies (STEM).
-            </p>
-
-            <div id="hero-ctas" class="hero-animate flex flex-col md:flex-row justify-center items-center gap-6">
-                <a href="#projet" id="magnetic-btn" class="ripple-target relative overflow-hidden group bg-ufhb-light text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white hover:text-ufhb-dark transition-colors duration-300 shadow-[0_0_20px_rgba(76,175,80,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] inline-block">
-                    Découvrir le programme
-                    <i class="fas fa-arrow-down ml-2 group-hover:translate-y-1 transition-transform"></i>
-                </a>
-                <a href="https://youtu.be/PaX879-Bexo?si=Lgz-UOX_eDx9jpMC" target="_blank" class="flex items-center gap-3 text-white hover:text-ufhb-light transition duration-300 group">
-                    <span class="w-12 h-12 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-md border border-white/30 group-hover:scale-110 transition duration-300">
-                        <i class="fas fa-play ml-1"></i>
-                    </span>
-                    <span class="font-bold underline decoration-ufhb-light underline-offset-4">Voir la vidéo</span>
-                </a>
+            <div class="flex justify-center">
+                <img src="images/stem.png" class="w-full max-w-md md:max-w-xl h-auto drop-shadow-2xl" alt="Illustration d'une étudiante en sciences (STEM) manipulant une fiole de laboratoire">
             </div>
         </div>
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 animate-bounce-slow">
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-ufhb-dark/40 animate-bounce-slow">
             <i class="fas fa-chevron-down text-3xl"></i>
         </div>
     </section>
@@ -398,7 +407,7 @@
     <!-- ===================== BANDEAU STATISTIQUES ===================== -->
     <section class="relative py-14 bg-ufhb-dark text-white overflow-hidden">
         <div class="mesh-blob w-72 h-72 bg-ufhb-light -top-16 -left-16"></div>
-        <div class="mesh-blob w-72 h-72 bg-emerald-400 -bottom-16 -right-16"></div>
+        <div class="mesh-blob w-72 h-72 bg-ufhb-teal -bottom-16 -right-16"></div>
         <div class="reveal-group container mx-auto px-6 relative z-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
                 <p class="text-4xl md:text-5xl font-extrabold text-ufhb-light"><span class="stat-number" data-target="4">0</span></p>
@@ -426,38 +435,89 @@
             <div class="reveal-single text-center mb-20">
                 <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/logo-Elevate%20Wise.jpg" alt="Logo Elevate Wise" class="h-32 mx-auto mb-8 object-contain hover:scale-105 transition duration-500 drop-shadow-xl">
                 <h2 class="text-5xl font-extrabold text-ufhb-dark mt-4 tracking-tight">ELEVATE WISE</h2>
-                <p class="text-xl text-gray-500 mt-2 font-light">Women in Science and Education</p>
+                <p class="text-xl text-ufhb-dark/60 mt-2 font-light">Women in Science and Education</p>
                 <div class="w-24 h-1.5 bg-ufhb-light mx-auto mt-6 rounded-full"></div>
             </div>
 
+            <!-- ===================== À PROPOS DU PROJET + OBJECTIFS ===================== -->
+            <div class="reveal-group grid md:grid-cols-5 gap-10 mb-20 items-stretch">
+                <div class="md:col-span-3 bg-ufhb-accent/40 rounded-3xl p-8 md:p-10">
+                    <h3 class="text-2xl font-bold text-ufhb-dark mb-4">À propos du projet</h3>
+                    <p class="text-ufhb-dark/75 leading-relaxed mb-4">
+                        <strong class="text-ufhb-dark">ELEVATE WISE</strong> (Empowering Women through Inclusive STEM Education) est un projet financé par le programme <strong>Erasmus+</strong> de l'Union Européenne, qui vise à promouvoir l'égalité de genre dans les filières Sciences, Technologies, Ingénierie et Mathématiques (STIM) au sein des établissements d'enseignement supérieur d'Afrique subsaharienne.
+                    </p>
+                    <p class="text-ufhb-dark/75 leading-relaxed">
+                        Le projet mise sur le développement de stratégies éducatives innovantes, de programmes de mentorat, de renforcement des capacités institutionnelles et d'une plateforme numérique d'accompagnement à l'apprentissage, contribuant à accroître la participation féminine et à réduire les inégalités de genre dans les filières STEM.
+                    </p>
+                </div>
+                <div class="md:col-span-2 bg-ufhb-light rounded-3xl p-8 md:p-10 text-white">
+                    <h3 class="text-2xl font-bold mb-6">Objectifs</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start"><i class="fas fa-check-circle mt-1 mr-3 shrink-0"></i><span>Promouvoir l'égalité de genre en STEM</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle mt-1 mr-3 shrink-0"></i><span>Augmenter la participation féminine</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle mt-1 mr-3 shrink-0"></i><span>Mettre en œuvre des programmes de mentorat</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle mt-1 mr-3 shrink-0"></i><span>Développer une plateforme numérique</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle mt-1 mr-3 shrink-0"></i><span>Renforcer les capacités institutionnelles</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ===================== FICHE DU PROJET ===================== -->
+            <div class="reveal-group grid grid-cols-2 md:grid-cols-6 gap-4 mb-20">
+                <div class="bg-ufhb-dark text-white rounded-2xl p-5 text-center">
+                    <p class="text-[11px] uppercase tracking-widest text-white/60 font-bold mb-1">Date de Début</p>
+                    <p class="text-lg font-extrabold">01 Nov 2024</p>
+                </div>
+                <div class="bg-ufhb-dark text-white rounded-2xl p-5 text-center">
+                    <p class="text-[11px] uppercase tracking-widest text-white/60 font-bold mb-1">Date Limite</p>
+                    <p class="text-lg font-extrabold">31 Oct 2027</p>
+                </div>
+                <div class="bg-ufhb-dark text-white rounded-2xl p-5 text-center">
+                    <p class="text-[11px] uppercase tracking-widest text-white/60 font-bold mb-1">Durée</p>
+                    <p class="text-lg font-extrabold">36 Mois</p>
+                </div>
+                <div class="bg-ufhb-dark text-white rounded-2xl p-5 text-center">
+                    <p class="text-[11px] uppercase tracking-widest text-white/60 font-bold mb-1">N° du Projet</p>
+                    <p class="text-lg font-extrabold">101178121</p>
+                </div>
+                <div class="bg-ufhb-teal text-white rounded-2xl p-5 text-center">
+                    <p class="text-[11px] uppercase tracking-widest text-white/70 font-bold mb-1">Programme</p>
+                    <p class="text-lg font-extrabold">ERASMUS+</p>
+                </div>
+                <div class="bg-ufhb-light text-white rounded-2xl p-5 text-center">
+                    <p class="text-[11px] uppercase tracking-widest text-white/70 font-bold mb-1">Budget Total</p>
+                    <p class="text-lg font-extrabold">€ 457 722,01</p>
+                </div>
+            </div>
+
             <div class="reveal-group grid md:grid-cols-3 gap-10 mb-8">
-                <div class="tilt-card glow-card p-8 rounded-3xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-2xl transition-[background-color,border-color,box-shadow] duration-500 text-center group cursor-default">
+                <div class="tilt-card glow-card p-8 rounded-3xl bg-ufhb-accent/40 hover:bg-white border border-transparent hover:border-ufhb-dark/10 hover:shadow-2xl transition-[background-color,border-color,box-shadow] duration-500 text-center group cursor-default">
                     <div class="w-20 h-20 mx-auto bg-ufhb-accent rounded-full flex items-center justify-center text-ufhb-dark text-4xl mb-6 group-hover:scale-110 group-hover:bg-ufhb-dark group-hover:text-white transition duration-500">
                         <i class="fas fa-bullseye"></i>
                     </div>
                     <h4 class="text-xl font-bold text-ufhb-dark mb-3">Leadership Féminin</h4>
-                    <p class="text-gray-600 leading-relaxed">Renforcer la place des femmes dans la gouvernance universitaire et la recherche.</p>
+                    <p class="text-ufhb-dark/75 leading-relaxed">Renforcer la place des femmes dans la gouvernance universitaire et la recherche.</p>
                 </div>
-                <div class="tilt-card glow-card p-8 rounded-3xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-2xl transition-[background-color,border-color,box-shadow] duration-500 text-center group cursor-default">
+                <div class="tilt-card glow-card p-8 rounded-3xl bg-ufhb-accent/40 hover:bg-white border border-transparent hover:border-ufhb-dark/10 hover:shadow-2xl transition-[background-color,border-color,box-shadow] duration-500 text-center group cursor-default">
                     <div class="w-20 h-20 mx-auto bg-ufhb-accent rounded-full flex items-center justify-center text-ufhb-dark text-4xl mb-6 group-hover:scale-110 group-hover:bg-ufhb-dark group-hover:text-white transition duration-500">
                         <i class="fas fa-network-wired"></i>
                     </div>
                     <h4 class="text-xl font-bold text-ufhb-dark mb-3">Réseautage</h4>
-                    <p class="text-gray-600 leading-relaxed">Créer un pont durable entre les scientifiques d'Europe et d'Afrique.</p>
+                    <p class="text-ufhb-dark/75 leading-relaxed">Créer un pont durable entre les scientifiques d'Europe et d'Afrique.</p>
                 </div>
-                <div class="tilt-card glow-card p-8 rounded-3xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-2xl transition-[background-color,border-color,box-shadow] duration-500 text-center group cursor-default">
+                <div class="tilt-card glow-card p-8 rounded-3xl bg-ufhb-accent/40 hover:bg-white border border-transparent hover:border-ufhb-dark/10 hover:shadow-2xl transition-[background-color,border-color,box-shadow] duration-500 text-center group cursor-default">
                     <div class="w-20 h-20 mx-auto bg-ufhb-accent rounded-full flex items-center justify-center text-ufhb-dark text-4xl mb-6 group-hover:scale-110 group-hover:bg-ufhb-dark group-hover:text-white transition duration-500">
                         <i class="fas fa-laptop-code"></i>
                     </div>
                     <h4 class="text-xl font-bold text-ufhb-dark mb-3">Digitalisation</h4>
-                    <p class="text-gray-600 leading-relaxed">Intégration massive des outils numériques et de l'IA dans l'enseignement.</p>
+                    <p class="text-ufhb-dark/75 leading-relaxed">Intégration massive des outils numériques et de l'IA dans l'enseignement.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ===================== TIMELINE : NOS TEMPS FORTS ===================== -->
-    <section class="py-24 bg-gray-50 relative overflow-hidden" id="temps-forts">
+    <section class="py-24 bg-ufhb-accent/40 relative overflow-hidden" id="temps-forts">
         <div class="mesh-blob w-96 h-96 bg-ufhb-light -bottom-20 -left-20"></div>
         <div class="container mx-auto px-6 relative z-10">
 
@@ -474,7 +534,7 @@
                 <div class="reveal-single relative md:grid md:grid-cols-2 md:gap-14 mb-20 items-center">
                     <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 top-12 w-5 h-5 rounded-full bg-ufhb-light timeline-dot z-10 items-center justify-center"></div>
                     <div class="order-1">
-                        <div class="mc-root relative rounded-3xl overflow-hidden shadow-2xl h-72 md:h-80 bg-gray-800 group">
+                        <div class="mc-root relative rounded-3xl overflow-hidden shadow-2xl h-72 md:h-80 bg-ufhb-dark group">
                             <div class="mc-track relative w-full h-full">
                                 <img class="mc-item active object-cover w-full h-full" src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/burgos-groupe.jpg" alt="Photo de groupe, lancement officiel à Burgos" data-caption="Photo de groupe — lancement officiel à Burgos, Espagne.">
                                 <img class="mc-item object-cover w-full h-full" src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/burgos-reunion.jpg" alt="Réunion de travail, lancement officiel à Burgos" data-caption="Réunion de travail du consortium — Burgos, Espagne.">
@@ -488,8 +548,8 @@
                     <div class="order-2 mt-6 md:mt-0">
                         <span class="inline-block px-4 py-1 rounded-full bg-ufhb-accent text-ufhb-dark text-xs font-extrabold uppercase tracking-widest mb-3">15 janvier 2025</span>
                         <h4 class="text-2xl font-bold text-ufhb-dark mb-3">Lancement officiel à Burgos</h4>
-                        <p class="text-gray-600 leading-relaxed mb-3">Deux jours de planification stratégique réunissant tout le consortium (UFHB, Burgos, Leiria, Cap-Vert) pour poser les bases du projet ELEVATE WISE.</p>
-                        <p class="mc-caption text-sm text-gray-500 italic min-h-[1.5rem]">Photo de groupe — lancement officiel à Burgos, Espagne.</p>
+                        <p class="text-ufhb-dark/75 leading-relaxed mb-3">Deux jours de planification stratégique réunissant tout le consortium (UFHB, Burgos, Leiria, Cap-Vert) pour poser les bases du projet ELEVATE WISE.</p>
+                        <p class="mc-caption text-sm text-ufhb-dark/60 italic min-h-[1.5rem]">Photo de groupe — lancement officiel à Burgos, Espagne.</p>
                     </div>
                 </div>
 
@@ -497,7 +557,7 @@
                 <div class="reveal-single relative md:grid md:grid-cols-2 md:gap-14 mb-20 items-center">
                     <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 top-12 w-5 h-5 rounded-full bg-ufhb-light timeline-dot z-10 items-center justify-center"></div>
                     <div class="order-1 md:order-2">
-                        <div class="mc-root relative rounded-3xl overflow-hidden shadow-2xl h-72 md:h-80 bg-gray-800 group">
+                        <div class="mc-root relative rounded-3xl overflow-hidden shadow-2xl h-72 md:h-80 bg-ufhb-dark group">
                             <div class="mc-track relative w-full h-full">
                                 <img class="mc-item active object-cover w-full h-full" src="images/presentation-filles-2025/01.jpeg" alt="Séance de présentation du projet aux jeunes filles de l'UFHB" data-caption="Les étudiantes de l'UFHB découvrent le projet ELEVATE WISE, en visioconférence avec les partenaires internationaux.">
                                 <img class="mc-item object-cover w-full h-full" src="images/presentation-filles-2025/02.jpeg" alt="Séance de présentation du projet aux jeunes filles de l'UFHB" data-caption="Présentation du projet et de ses opportunités de mobilité académique aux étudiantes.">
@@ -514,8 +574,8 @@
                     <div class="order-2 md:order-1 mt-6 md:mt-0 md:text-right">
                         <span class="inline-block px-4 py-1 rounded-full bg-ufhb-accent text-ufhb-dark text-xs font-extrabold uppercase tracking-widest mb-3">19 décembre 2025</span>
                         <h4 class="text-2xl font-bold text-ufhb-dark mb-3">Présentation aux jeunes filles de l'UFHB</h4>
-                        <p class="text-gray-600 leading-relaxed mb-3">Séance de présentation du projet, en visioconférence avec les partenaires internationaux, à destination des étudiantes en filières scientifiques et techniques.</p>
-                        <p class="mc-caption text-sm text-gray-500 italic min-h-[1.5rem]">Les étudiantes de l'UFHB découvrent le projet ELEVATE WISE, en visioconférence avec les partenaires internationaux.</p>
+                        <p class="text-ufhb-dark/75 leading-relaxed mb-3">Séance de présentation du projet, en visioconférence avec les partenaires internationaux, à destination des étudiantes en filières scientifiques et techniques.</p>
+                        <p class="mc-caption text-sm text-ufhb-dark/60 italic min-h-[1.5rem]">Les étudiantes de l'UFHB découvrent le projet ELEVATE WISE, en visioconférence avec les partenaires internationaux.</p>
                     </div>
                 </div>
 
@@ -523,7 +583,7 @@
                 <div class="reveal-single relative md:grid md:grid-cols-2 md:gap-14 mb-20 items-center">
                     <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 top-12 w-5 h-5 rounded-full bg-ufhb-light timeline-dot z-10 items-center justify-center"></div>
                     <div class="order-1">
-                        <div class="mc-root relative rounded-3xl overflow-hidden shadow-2xl h-72 md:h-80 bg-gray-800 group">
+                        <div class="mc-root relative rounded-3xl overflow-hidden shadow-2xl h-72 md:h-80 bg-ufhb-dark group">
                             <div class="mc-track relative w-full h-full">
                                 <img class="mc-item active object-cover w-full h-full" src="images/journee-annuelle-2026/01-equipe-consortium.jpeg" alt="Équipes du consortium ELEVATE WISE, Journée Annuelle 21 janvier 2026" data-caption="Les équipes du consortium (UFHB, Leiria, Burgos, Cap-Vert, UAO Bouaké) réunies à l'issue de la Journée Annuelle.">
                                 <img class="mc-item object-cover w-full h-full" src="images/journee-annuelle-2026/02-equipe-consortium.jpeg" alt="Équipes du consortium ELEVATE WISE, Journée Annuelle 21 janvier 2026" data-caption="Remise des distinctions « Ma Référence » aux étudiantes modèles du programme.">
@@ -537,8 +597,8 @@
                     <div class="order-2 mt-6 md:mt-0">
                         <span class="inline-block px-4 py-1 rounded-full bg-ufhb-accent text-ufhb-dark text-xs font-extrabold uppercase tracking-widest mb-3">21 janvier 2026</span>
                         <h4 class="text-2xl font-bold text-ufhb-dark mb-3">Journée Annuelle ELEVATE WISE</h4>
-                        <p class="text-gray-600 leading-relaxed mb-3">Bilan annuel du projet à l'UFHB, réunissant l'ensemble des équipes partenaires du consortium et les étudiantes distinguées « Ma Référence ».</p>
-                        <p class="mc-caption text-sm text-gray-500 italic min-h-[1.5rem]">Les équipes du consortium (UFHB, Leiria, Burgos, Cap-Vert, UAO Bouaké) réunies à l'issue de la Journée Annuelle.</p>
+                        <p class="text-ufhb-dark/75 leading-relaxed mb-3">Bilan annuel du projet à l'UFHB, réunissant l'ensemble des équipes partenaires du consortium et les étudiantes distinguées « Ma Référence ».</p>
+                        <p class="mc-caption text-sm text-ufhb-dark/60 italic min-h-[1.5rem]">Les équipes du consortium (UFHB, Leiria, Burgos, Cap-Vert, UAO Bouaké) réunies à l'issue de la Journée Annuelle.</p>
                     </div>
                 </div>
 
@@ -546,7 +606,7 @@
                 <div class="reveal-single relative md:grid md:grid-cols-2 md:gap-14 items-center">
                     <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 top-12 w-5 h-5 rounded-full bg-ufhb-light timeline-dot z-10 items-center justify-center"></div>
                     <div class="order-1 md:order-2">
-                        <div id="atelier-carousel" class="mc-root relative rounded-3xl overflow-hidden shadow-2xl h-72 md:h-80 bg-gray-800 group">
+                        <div id="atelier-carousel" class="mc-root relative rounded-3xl overflow-hidden shadow-2xl h-72 md:h-80 bg-ufhb-dark group">
                             <div class="mc-track relative w-full h-full">
                                 <img class="mc-item active object-cover w-full h-full" src="images/atelier-national-2026/01-ouverture-dion.jpg" alt="Allocution d'ouverture de l'atelier national ELEVATE WISE" data-caption="Le Prof. DION Yodé Simplice, Vice-président de l'UFHB, prononce l'allocution d'ouverture de l'atelier national.">
                                 <img class="mc-item object-cover w-full h-full" src="images/atelier-national-2026/02-table-honneur.jpeg" alt="Table d'honneur de l'atelier national" data-caption="Les responsables du projet à la table d'honneur de l'atelier national.">
@@ -577,8 +637,8 @@
                     <div class="order-2 md:order-1 mt-6 md:mt-0 md:text-right">
                         <span class="inline-block px-4 py-1 rounded-full bg-ufhb-accent text-ufhb-dark text-xs font-extrabold uppercase tracking-widest mb-3">24 mars 2026</span>
                         <h4 class="text-2xl font-bold text-ufhb-dark mb-3">Atelier National ELEVATE WISE</h4>
-                        <p class="text-gray-600 leading-relaxed mb-3">Atelier réunissant experts, décideurs institutionnels et bénéficiaires autour de la féminisation des filières STEM, avec les interventions du Pr. DION Yodé Simplice, de Dr Nieré Laetitia DAGNOGO (UAO) et de Dr DIOMANDE Zinié Ella (UFHB).</p>
-                        <p class="mc-caption text-sm text-gray-500 italic min-h-[1.5rem]">Le Prof. DION Yodé Simplice, Vice-président de l'UFHB, prononce l'allocution d'ouverture de l'atelier national.</p>
+                        <p class="text-ufhb-dark/75 leading-relaxed mb-3">Atelier réunissant experts, décideurs institutionnels et bénéficiaires autour de la féminisation des filières STEM, avec les interventions du Pr. DION Yodé Simplice, de Dr Nieré Laetitia DAGNOGO (UAO) et de Dr DIOMANDE Zinié Ella (UFHB).</p>
+                        <p class="mc-caption text-sm text-ufhb-dark/60 italic min-h-[1.5rem]">Le Prof. DION Yodé Simplice, Vice-président de l'UFHB, prononce l'allocution d'ouverture de l'atelier national.</p>
                     </div>
                 </div>
             </div>
@@ -600,7 +660,7 @@
                     </div>
                     <img src="images/temoignages/01.jpeg" alt="Témoignage d'une étudiante bénéficiaire du projet ELEVATE WISE" class="w-full h-80 object-cover">
                     <div class="p-6">
-                        <p class="text-gray-600 leading-relaxed">Une étudiante bénéficiaire du projet ELEVATE WISE témoigne de son parcours en filière STIM.</p>
+                        <p class="text-ufhb-dark/75 leading-relaxed">Une étudiante bénéficiaire du projet ELEVATE WISE témoigne de son parcours en filière STIM.</p>
                         <p class="text-ufhb-dark font-bold mt-4 text-xs uppercase tracking-widest">Étudiante bénéficiaire — Filière STIM</p>
                     </div>
                 </div>
@@ -610,7 +670,7 @@
                     </div>
                     <img src="images/temoignages/02.jpeg" alt="Témoignage d'une étudiante bénéficiaire du projet ELEVATE WISE" class="w-full h-80 object-cover">
                     <div class="p-6">
-                        <p class="text-gray-600 leading-relaxed">Une étudiante bénéficiaire du projet ELEVATE WISE partage son expérience dans les filières scientifiques.</p>
+                        <p class="text-ufhb-dark/75 leading-relaxed">Une étudiante bénéficiaire du projet ELEVATE WISE partage son expérience dans les filières scientifiques.</p>
                         <p class="text-ufhb-dark font-bold mt-4 text-xs uppercase tracking-widest">Étudiante bénéficiaire — Filière STIM</p>
                     </div>
                 </div>
@@ -629,15 +689,15 @@
                     <ul class="reveal-group space-y-4">
                         <li class="flex items-start bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition">
                             <i class="fas fa-check-circle text-ufhb-light mt-1 mr-3 text-xl"></i>
-                            <span class="text-gray-700 font-medium">Ateliers Leadership & Gestion de projet</span>
+                            <span class="text-ufhb-dark/85 font-medium">Ateliers Leadership & Gestion de projet</span>
                         </li>
                         <li class="flex items-start bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition">
                             <i class="fas fa-check-circle text-ufhb-light mt-1 mr-3 text-xl"></i>
-                            <span class="text-gray-700 font-medium">Mobilités académiques vers l'Europe</span>
+                            <span class="text-ufhb-dark/85 font-medium">Mobilités académiques vers l'Europe</span>
                         </li>
                         <li class="flex items-start bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition">
                             <i class="fas fa-check-circle text-ufhb-light mt-1 mr-3 text-xl"></i>
-                            <span class="text-gray-700 font-medium">Création de pôles STEM féminins</span>
+                            <span class="text-ufhb-dark/85 font-medium">Création de pôles STEM féminins</span>
                         </li>
                     </ul>
                 </div>
@@ -646,23 +706,23 @@
                         <i class="fas fa-users mr-3 text-ufhb-light"></i> Bénéficiaires
                     </h3>
                     <div class="reveal-group grid grid-cols-2 gap-4">
-                        <div class="group p-5 border border-gray-200 rounded-2xl text-center hover:bg-ufhb-dark hover:text-white transition duration-300">
+                        <div class="group p-5 border border-ufhb-dark/10 rounded-2xl text-center hover:bg-ufhb-dark hover:text-white transition duration-300">
                             <i class="fas fa-user-tie text-3xl mb-2 text-ufhb-light"></i>
                             <p class="font-bold">Administration</p>
                         </div>
 
-                        <div class="group p-5 border border-gray-200 rounded-2xl text-center hover:bg-ufhb-dark hover:text-white transition duration-300 flex flex-col items-center justify-center">
+                        <div class="group p-5 border border-ufhb-dark/10 rounded-2xl text-center hover:bg-ufhb-dark hover:text-white transition duration-300 flex flex-col items-center justify-center">
                             <i class="fas fa-female text-3xl mb-2 text-ufhb-light"></i>
                             <p class="font-bold leading-tight">Jeunes Filles</p>
                             <p class="text-xs mt-1 opacity-80 leading-tight">(Secondaire & Supérieur)</p>
                         </div>
 
-                        <div class="group p-5 border border-gray-200 rounded-2xl text-center hover:bg-ufhb-dark hover:text-white transition duration-300">
+                        <div class="group p-5 border border-ufhb-dark/10 rounded-2xl text-center hover:bg-ufhb-dark hover:text-white transition duration-300">
                             <i class="fas fa-chalkboard-teacher text-3xl mb-2 text-ufhb-light"></i>
                             <p class="font-bold">Enseignants</p>
                         </div>
 
-                        <div class="group p-5 border border-gray-200 rounded-2xl text-center hover:bg-ufhb-dark hover:text-white transition duration-300">
+                        <div class="group p-5 border border-ufhb-dark/10 rounded-2xl text-center hover:bg-ufhb-dark hover:text-white transition duration-300">
                             <i class="fas fa-university text-3xl mb-2 text-ufhb-light"></i>
                             <p class="font-bold">Institution</p>
                         </div>
@@ -672,7 +732,7 @@
         </div>
     </section>
 
-    <section class="py-24 bg-gray-50" id="partenaires">
+    <section class="py-24 bg-ufhb-accent/40" id="partenaires">
         <div class="container mx-auto px-6 text-center">
             <div class="reveal-single">
                 <span class="text-ufhb-light font-bold tracking-widest uppercase text-sm mb-2 block">Collaboration Internationale</span>
@@ -699,6 +759,9 @@
                         <div class="opacity-60 hover:opacity-100 transition duration-300 grayscale hover:grayscale-0 shrink-0">
                             <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/ucv.png" alt="Cap-Vert" class="h-20 w-auto object-contain">
                         </div>
+                        <div class="opacity-60 hover:opacity-100 transition duration-300 grayscale hover:grayscale-0 shrink-0">
+                            <img src="images/logo-usantiago.png" alt="Université de Santiago" class="h-20 w-auto object-contain mix-blend-multiply">
+                        </div>
                         <!-- Duplication pour boucle infinie -->
                         <div class="opacity-60 hover:opacity-100 transition duration-300 grayscale hover:grayscale-0 shrink-0" aria-hidden="true">
                             <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/University-of-Burgos.png" alt="" class="h-20 w-auto object-contain">
@@ -711,6 +774,9 @@
                         </div>
                         <div class="opacity-60 hover:opacity-100 transition duration-300 grayscale hover:grayscale-0 shrink-0" aria-hidden="true">
                             <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/ucv.png" alt="" class="h-20 w-auto object-contain">
+                        </div>
+                        <div class="opacity-60 hover:opacity-100 transition duration-300 grayscale hover:grayscale-0 shrink-0" aria-hidden="true">
+                            <img src="images/logo-usantiago.png" alt="" class="h-20 w-auto object-contain mix-blend-multiply">
                         </div>
                     </div>
                 </div>
@@ -759,21 +825,21 @@
                         <div class="grid grid-cols-2 gap-4 mb-4">
                             <div>
                      
-                                <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Nom</label>
-                                <input type="text" name="nom" class="w-full bg-gray-50 p-3 rounded-lg border border-gray-200 focus:border-ufhb-light focus:ring-2 focus:ring-ufhb-light/20 outline-none transition">
+                                <label class="block text-xs uppercase font-bold text-ufhb-dark/60 mb-2">Nom</label>
+                                <input type="text" name="nom" class="w-full bg-ufhb-accent/40 p-3 rounded-lg border border-ufhb-dark/10 focus:border-ufhb-light focus:ring-2 focus:ring-ufhb-light/20 outline-none transition">
                             </div>
                             <div>
-                                <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Prénom</label>
-                                <input type="text" name="prenom" class="w-full bg-gray-50 p-3 rounded-lg border border-gray-200 focus:border-ufhb-light focus:ring-2 focus:ring-ufhb-light/20 outline-none transition">
+                                <label class="block text-xs uppercase font-bold text-ufhb-dark/60 mb-2">Prénom</label>
+                                <input type="text" name="prenom" class="w-full bg-ufhb-accent/40 p-3 rounded-lg border border-ufhb-dark/10 focus:border-ufhb-light focus:ring-2 focus:ring-ufhb-light/20 outline-none transition">
                             </div>
                         </div>
                         <div class="mb-4">
-                            <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Email</label>
-                            <input type="email" name="email" class="w-full bg-gray-50 p-3 rounded-lg border border-gray-200 focus:border-ufhb-light focus:ring-2 focus:ring-ufhb-light/20 outline-none transition">
+                            <label class="block text-xs uppercase font-bold text-ufhb-dark/60 mb-2">Email</label>
+                            <input type="email" name="email" class="w-full bg-ufhb-accent/40 p-3 rounded-lg border border-ufhb-dark/10 focus:border-ufhb-light focus:ring-2 focus:ring-ufhb-light/20 outline-none transition">
                         </div>
                         <div class="mb-6">
-                            <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Message</label>
-                            <textarea rows="4" name="message" class="w-full bg-gray-50 p-3 rounded-lg border border-gray-200 focus:border-ufhb-light focus:ring-2 focus:ring-ufhb-light/20 outline-none transition"></textarea>
+                            <label class="block text-xs uppercase font-bold text-ufhb-dark/60 mb-2">Message</label>
+                            <textarea rows="4" name="message" class="w-full bg-ufhb-accent/40 p-3 rounded-lg border border-ufhb-dark/10 focus:border-ufhb-light focus:ring-2 focus:ring-ufhb-light/20 outline-none transition"></textarea>
                         </div>
                         <button type="submit" class="ripple-target relative overflow-hidden w-full bg-ufhb-dark hover:bg-ufhb-light text-white font-bold py-4 rounded-xl transition duration-300 transform hover:-translate-y-1 shadow-lg">
                             Envoyer le message <i class="fas fa-paper-plane ml-2"></i>
@@ -781,7 +847,8 @@
                     </form>
                 </div>
             </div>
-            <div class="border-t border-white/10 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+            <p class="mt-16 text-xs text-gray-400 leading-relaxed max-w-4xl">AVERTISSEMENT : ce projet est cofinancé par l'Union européenne. Ce site reflète uniquement les opinions de ses auteurs et ne représente pas nécessairement celles de l'Union européenne ni de l'Agence exécutive européenne pour l'éducation et la culture (EACEA). Ni l'Union européenne ni l'EACEA ne peuvent en être tenues responsables.</p>
+            <div class="border-t border-white/10 mt-6 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
                 <p>&copy; 2025 UFHB. Tous droits réservés.</p>
                 <div class="flex space-x-6 mt-4 md:mt-0">
                     <a href="#" class="hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
@@ -795,7 +862,7 @@
     <button id="back-to-top" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-ufhb-dark text-white shadow-xl flex items-center justify-center opacity-0 pointer-events-none translate-y-4 hover:bg-ufhb-light transition-colors duration-300">
         <svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 56 56">
             <circle cx="28" cy="28" r="25" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"></circle>
-            <circle id="back-to-top-ring" cx="28" cy="28" r="25" fill="none" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-dasharray="157.08" stroke-dashoffset="157.08"></circle>
+            <circle id="back-to-top-ring" cx="28" cy="28" r="25" fill="none" stroke="#F2901E" stroke-width="2" stroke-linecap="round" stroke-dasharray="157.08" stroke-dashoffset="157.08"></circle>
         </svg>
         <i class="fas fa-arrow-up relative z-10"></i>
     </button>
@@ -988,7 +1055,7 @@
                         const dx = a.x - b.x, dy = a.y - b.y;
                         const dist = Math.sqrt(dx * dx + dy * dy);
                         if (dist < LINK_DIST) {
-                            ctx.strokeStyle = `rgba(90,210,130,${0.16 * (1 - dist / LINK_DIST)})`;
+                            ctx.strokeStyle = `rgba(242,164,70,${0.16 * (1 - dist / LINK_DIST)})`;
                             ctx.lineWidth = 1;
                             ctx.beginPath();
                             ctx.moveTo(a.x, a.y);
@@ -1002,7 +1069,7 @@
                         const dxm = p.x - mouseX, dym = p.y - mouseY;
                         const distM = Math.sqrt(dxm * dxm + dym * dym);
                         if (distM < MOUSE_RADIUS) {
-                            ctx.strokeStyle = `rgba(110,235,150,${0.4 * (1 - distM / MOUSE_RADIUS)})`;
+                            ctx.strokeStyle = `rgba(250,180,90,${0.4 * (1 - distM / MOUSE_RADIUS)})`;
                             ctx.lineWidth = 1;
                             ctx.beginPath();
                             ctx.moveTo(p.x, p.y);
@@ -1011,9 +1078,9 @@
                         }
                     }
                 }
-                ctx.shadowColor = 'rgba(80,220,120,0.6)';
+                ctx.shadowColor = 'rgba(242,144,30,0.6)';
                 ctx.shadowBlur = 4;
-                ctx.fillStyle = 'rgba(100,225,140,0.6)';
+                ctx.fillStyle = 'rgba(248,170,80,0.6)';
                 for (const p of particles) {
                     ctx.beginPath();
                     ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -1021,7 +1088,7 @@
                 }
                 ctx.shadowBlur = 0;
                 if (mouseX !== null) {
-                    ctx.fillStyle = 'rgba(150,255,180,0.75)';
+                    ctx.fillStyle = 'rgba(255,200,120,0.75)';
                     ctx.beginPath();
                     ctx.arc(mouseX, mouseY, 2.5, 0, Math.PI * 2);
                     ctx.fill();

@@ -330,18 +330,18 @@
     </div>
 
     <header class="glass-nav fixed top-0 w-full z-50 transition-all duration-300">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3 group cursor-pointer">
-                <div class="relative">
+        <div class="w-full px-3 sm:px-5 py-3 sm:py-4 flex justify-between items-center gap-2">
+            <div class="flex items-center space-x-2 sm:space-x-3 group cursor-pointer min-w-0">
+                <div class="relative shrink-0">
                     <div class="absolute -inset-1 bg-gradient-to-r from-ufhb-light to-ufhb-teal rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-                    <img src="images/logo-ufhb.jpg" alt="Logo Université Félix Houphouët-Boigny" class="relative h-14 w-auto object-contain bg-white rounded-full p-1">
+                    <img src="images/logo-ufhb.jpg" alt="Logo Université Félix Houphouët-Boigny" class="relative shrink-0 h-11 sm:h-14 w-auto object-contain bg-white rounded-full p-1">
 
                 </div>
-                <div class="hidden sm:block leading-tight">
-                    <h1 class="text-base md:text-lg font-extrabold tracking-tight" style="color:#15803D">Université Félix<br>Houphouët-Boigny</h1>
+                <div class="block shrink-0 leading-tight whitespace-nowrap">
+                    <h1 class="text-[13px] sm:text-base md:text-lg font-extrabold tracking-tight" style="color:#15803D">Université Félix<br>Houphouët-Boigny</h1>
                 </div>
             </div>
-            <nav class="hidden md:flex space-x-8 text-sm font-bold uppercase tracking-wide text-ufhb-dark/75 items-center relative">
+            <nav class="hidden xl:flex xl:space-x-5 2xl:space-x-8 whitespace-nowrap text-sm font-bold uppercase tracking-wide text-ufhb-dark/75 items-center relative">
                 <span id="nav-indicator"></span>
                 <a href="#accueil" class="nav-link hover:text-ufhb-dark transition" data-nav="accueil">Accueil</a>
                 <a href="#projet" class="nav-link hover:text-ufhb-dark transition" data-nav="projet">Le Projet</a>
@@ -352,14 +352,22 @@
                     Contact
                 </a>
             </nav>
-            <div id="lang-switch" class="ml-auto md:ml-6 mr-3 md:mr-0 flex items-center rounded-full border border-ufhb-dark/20 overflow-hidden text-xs font-bold tracking-widest" role="group" aria-label="Langue / Language / Idioma">
-                <button type="button" data-lang="fr" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 transition" title="Français"><svg class="lang-flag" viewBox="0 0 30 20" width="20" height="14" aria-hidden="true"><rect width="10" height="20" fill="#0055A4"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#EF4135"/></svg><span>FR</span></button>
-                <button type="button" data-lang="en" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 transition" title="English"><svg class="lang-flag" viewBox="0 0 60 30" width="20" height="14" aria-hidden="true"><clipPath id="uj-s"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="uj-t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><g clip-path="url(#uj-s)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#uj-t)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg><span>EN</span></button>
-                <button type="button" data-lang="es" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 transition" title="Español"><svg class="lang-flag" viewBox="0 0 30 20" width="20" height="14" aria-hidden="true"><rect width="30" height="20" fill="#AA151B"/><rect y="5" width="30" height="10" fill="#F1BF00"/></svg><span>ES</span></button>
+            <div id="lang-switch" class="ml-auto xl:ml-6 mr-3 xl:mr-0 shrink-0 flex items-center rounded-full border border-ufhb-dark/20 overflow-hidden text-xs font-bold tracking-widest" role="group" aria-label="Langue / Language / Idioma">
+                <button type="button" data-lang="fr" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 transition" title="Français"><svg class="lang-flag" viewBox="0 0 30 20" width="20" height="14" aria-hidden="true"><rect width="10" height="20" fill="#0055A4"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#EF4135"/></svg><span class="hidden sm:inline">FR</span></button>
+                <button type="button" data-lang="en" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 transition" title="English"><svg class="lang-flag" viewBox="0 0 60 30" width="20" height="14" aria-hidden="true"><clipPath id="uj-s"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="uj-t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><g clip-path="url(#uj-s)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#uj-t)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg><span class="hidden sm:inline">EN</span></button>
+                <button type="button" data-lang="es" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 transition" title="Español"><svg class="lang-flag" viewBox="0 0 30 20" width="20" height="14" aria-hidden="true"><rect width="30" height="20" fill="#AA151B"/><rect y="5" width="30" height="10" fill="#F1BF00"/></svg><span class="hidden sm:inline">ES</span></button>
             </div>
-            <button class="md:hidden text-ufhb-dark text-2xl hover:text-ufhb-light transition">
+            <button id="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu" class="xl:hidden shrink-0 text-ufhb-dark text-2xl hover:text-ufhb-light transition">
                 <i class="fas fa-bars"></i>
             </button>
+        </div>
+        <div id="mobile-menu" class="hidden xl:hidden absolute top-full left-0 w-full bg-white shadow-lg border-t border-ufhb-dark/10">
+            <a href="#accueil" class="block px-6 py-3 text-sm font-bold uppercase tracking-wide text-ufhb-dark/80 hover:bg-ufhb-accent/60 hover:text-ufhb-dark">Accueil</a>
+            <a href="#projet" class="block px-6 py-3 text-sm font-bold uppercase tracking-wide text-ufhb-dark/80 hover:bg-ufhb-accent/60 hover:text-ufhb-dark">Le Projet</a>
+            <a href="#temps-forts" class="block px-6 py-3 text-sm font-bold uppercase tracking-wide text-ufhb-dark/80 hover:bg-ufhb-accent/60 hover:text-ufhb-dark">Temps Forts</a>
+            <a href="#temoignages" class="block px-6 py-3 text-sm font-bold uppercase tracking-wide text-ufhb-dark/80 hover:bg-ufhb-accent/60 hover:text-ufhb-dark">Témoignages</a>
+            <a href="#partenaires" class="block px-6 py-3 text-sm font-bold uppercase tracking-wide text-ufhb-dark/80 hover:bg-ufhb-accent/60 hover:text-ufhb-dark">Partenaires</a>
+            <a href="#contact" class="block px-6 py-3 text-sm font-bold uppercase tracking-wide text-ufhb-dark/80 hover:bg-ufhb-accent/60 hover:text-ufhb-dark">Contact</a>
         </div>
     </header>
 
@@ -1445,6 +1453,16 @@
   });
   function init(){ apply(start); }
   if(document.readyState==='complete') init(); else window.addEventListener('load',init);
+})();
+</script>
+<script>
+(function(){
+  var b=document.getElementById('menu-toggle'), m=document.getElementById('mobile-menu');
+  if(!b||!m) return;
+  function set(o){ m.classList.toggle('hidden',!o); b.setAttribute('aria-expanded',o?'true':'false'); }
+  b.addEventListener('click',function(){ set(m.classList.contains('hidden')); });
+  m.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ set(false); }); });
+  window.addEventListener('resize',function(){ if(window.innerWidth>=1280) set(false); });
 })();
 </script>
 </body>
